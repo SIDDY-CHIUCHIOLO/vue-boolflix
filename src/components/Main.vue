@@ -1,6 +1,6 @@
 <template>
     <div>
-        <main v-if="listOfFilms">
+        <main v-if="listOfFilms" class="d-flex flex-wrap justify-content-center">
             <Film
             v-for="(element, index) in listOfFilms"
             :key="index"

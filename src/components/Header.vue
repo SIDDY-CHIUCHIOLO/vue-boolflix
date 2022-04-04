@@ -5,8 +5,8 @@
             <div class="row text-white">
                 <div class="col-12">
                     <nav class="navbar d-flex justify-content-end">
-                        <input v-model="searchFilm" class="me-2 py-1 border border-primary bg-dark text-white" placeholder="Search">
-                        <button @click="$emit('search', searchFilm)" class="btn btn-outline-danger">Search</button>
+                        <input @keyup="$emit('search', searchFilm)" v-model="searchFilm" class="me-2 py-1 border border-primary bg-dark text-white" placeholder="Search">
+                        <button @click="deleteSearch()" class="btn btn-outline-danger">Search</button>
                     </nav>
                 </div>
             </div>
@@ -23,6 +23,9 @@ export default {
         }
     },
     methods:{
+        deleteSearch(){
+            this.searchFilm = ""
+        }
     }
 }
 </script>

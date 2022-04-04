@@ -30,12 +30,17 @@ export default {
   },
   methods:{
     getApiFilms(searchText){
-      axios
-      .get('https://api.themoviedb.org/3/search/movie?api_key=e99307154c6dfb0b4750f6603256716d&query=' + searchText)
-      .then((result) =>{
-          this.listSearchFilm = result.data.results
-          console.log(this.listSearchFilm)
-      })
+      if(searchText != ''){
+        axios
+        .get('https://api.themoviedb.org/3/search/movie?api_key=e99307154c6dfb0b4750f6603256716d&query=' + searchText)
+        .then((result) =>{
+            this.listSearchFilm = result.data.results
+            console.log(this.listSearchFilm)
+        })
+      } else{
+        this.listSearchFilm = '',
+        console.warn('NESSUN TITOLO CERCATO')
+      }
     },
   }
 }
