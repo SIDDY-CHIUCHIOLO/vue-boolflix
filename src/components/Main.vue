@@ -1,34 +1,38 @@
 <template>
-    <main>
-        <div>
-            <button @click="getApiFilms()" class="btn bg-white">clicca</button>
+    <div>
+        <main v-if="listOfFilms">
+            <Film
+            v-for="(element, index) in listOfFilms"
+            :key="index"
+            :title="element.title"
+            :originalTitle="element.original_title"
+            :language="element.original_language"
+            :vote="element.vote_count"
+            />
+        </main>
+        <div v-else class="my-main text-center">
+            <h1 class="pt-5 text-white">NESSUN TITOLO CERCATO</h1>
         </div>
-    </main>
+    </div>
 </template>
 
 <script>
-import axios from 'axios';
+import Film from './Film.vue'
+
 export default {
     name: "IndexMain",
-    data: function(){
-        return{
-            listApiFilms: null,
-        }
+    props: ['listOfFilms'],
+    components: {
+    Film,
     },
-    methods:{
-        getApiFilms(){
-            axios
-            .get('https://api.themoviedb.org/3/movie/550?api_key=32882ac1b7e4c41041b47646c6d0f4cd')
-            .then((result) =>{
-                console.log( result);
-            })
-        }
-    }
 }
 </script>
 
 <style>
     main{
+        background-color: #2e3a46;
+    }
+    .my-main{
         height: 85vh;
         background-color: #2e3a46;
     }
