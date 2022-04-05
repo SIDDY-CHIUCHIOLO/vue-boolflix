@@ -1,12 +1,10 @@
 <template>
   <div id="app">
-    <!-- 32882ac1b7e4c41041b47646c6d0f4cd-->
-
     <Header
-    @search="getApiFilms"
+    @search="searchFilmsEndSeries"
     />
     <Main
-      :listOfFilms = listSearchFilm
+      :movies = moviesAndSeries
     />
   </div>
 </template>
@@ -26,22 +24,49 @@ export default {
   data: function(){
       return{
         listSearchFilm: null,
+        movies:[],
+        series:[],
+        moviesAndSeries: [],
+        apiUrl: 'https://api.themoviedb.org/3/search/',
+        apiKey: '?api_key=e99307154c6dfb0b4750f6603256716d&query=',
+        movieSearch: '',
       }
   },
   methods:{
-    getApiFilms(searchText){
+    searchFilmsEndSeries(searchText){
       if(searchText != ''){
-        axios
-        .get('https://api.themoviedb.org/3/search/movie?api_key=e99307154c6dfb0b4750f6603256716d&query=' + searchText)
-        .then((result) =>{
-            this.listSearchFilm = result.data.results
-            console.log(this.listSearchFilm)
-        })
+        this.movieSearch = searchText;
+        this.getMovies();
+        this.getSeries();
       } else{
-        this.listSearchFilm = '',
+        this.moviesAndSeries = '',
         console.warn('NESSUN TITOLO CERCATO')
       }
     },
+    getMovies(){
+      axios
+      .get(this.apiUrl + 'movie'+ this.apiKey + this.movieSearch)
+      .then((response) =>{
+        console.log(response.data.results);
+        this.movies = response.data.results;
+        this.moviesAndSeries = [...this.movies, ...this.series];
+      })
+      .catch((error) =>{
+        console.log(error)
+      })
+    },
+    getSeries(){
+      axios
+      .get(this.apiUrl + 'tv'+ this.apiKey +this.movieSearch)
+      .then((response) =>{
+        console.log(response.data.results);
+        this.series = response.data.results;
+        this.moviesAndSeries = [...this.movies, ...this.series];
+      })
+      .catch((error) =>{
+        console.log(error)
+      })
+    }
   }
 }
 </script>

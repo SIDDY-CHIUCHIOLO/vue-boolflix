@@ -1,11 +1,15 @@
 <template>
     <div>
-        <main v-if="listOfFilms" class="d-flex flex-wrap justify-content-center py-4">
+        <main v-if="movies" class="d-flex flex-wrap justify-content-center py-4">
+            <div v-for="(element, index) in movies" :key="index+'movies'">
+            </div>
             <Film
-            v-for="(element, index) in listOfFilms"
+            v-for="(element, index) in movies"
             :key="index"
             :title="element.title"
+            :name="element.name"
             :originalTitle="element.original_title"
+            :originalName="element.original_name"
             :language="element.original_language"
             :vote="element.vote_count"
             />
@@ -13,6 +17,7 @@
         <div v-else class="my-main text-center">
             <h1 class="pt-5 text-white">NESSUN TITOLO CERCATO</h1>
         </div>
+        
     </div>
 </template>
 
@@ -21,7 +26,7 @@ import Film from './Film.vue';
 
 export default {
     name: "IndexMain",
-    props: ['listOfFilms'],
+    props: ['movies'],
     components: {
     Film,
     },
