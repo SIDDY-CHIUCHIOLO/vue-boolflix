@@ -12,6 +12,7 @@
             :originalName="element.original_name"
             :language="element.original_language"
             :vote="element.vote_count"
+            :urlImage="element.poster_path"
             />
         </main>
         <div v-else class="my-main text-center">
@@ -30,6 +31,12 @@ export default {
     components: {
     Film,
     },
+    data: function(){
+        return{
+        }
+    },
+    methods:{
+    }
 }
 </script>
 

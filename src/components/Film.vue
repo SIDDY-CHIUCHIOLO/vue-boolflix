@@ -7,6 +7,7 @@
                     <span>language : <lang-flag :iso='language'/></span>
                 </div>
                 <p>{{vote}}</p>
+                <img :src="srcImage()" alt="">
             </div>
         </div>
 </template>
@@ -19,19 +20,22 @@ export default {
     components:{
         LangFlag
     },
-    props:['title', 'originalTitle', 'language', 'vote', 'name', 'originalName'],
+    props:['title', 'originalTitle', 'language', 'vote', 'name', 'originalName', 'urlImage'],
     data: function(){
         return{
+            urlBase: 'https://image.tmdb.org/t/p/',
+            Image: '',
+            listSizeImage: ["w45","w92","w154","w185","w300","w500","w780","w1280","h632","original"]
         }
     },
     methods:{
+        srcImage(){
+            this.Image = this.urlBase + this.listSizeImage[3] + this.urlImage;
+            return this.Image
+        }
     }
 }
 </script>
 
 <style lang="scss" scoped>
-    img{
-        width: 50px;
-        height: 30px;
-    }
 </style>
