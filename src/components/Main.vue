@@ -1,6 +1,6 @@
 <template>
     <div>
-        <main v-if="listOfFilms" class="d-flex flex-wrap justify-content-center">
+        <main v-if="listOfFilms" class="d-flex flex-wrap justify-content-center py-4">
             <Film
             v-for="(element, index) in listOfFilms"
             :key="index"
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import Film from './Film.vue'
+import Film from './Film.vue';
 
 export default {
     name: "IndexMain",
