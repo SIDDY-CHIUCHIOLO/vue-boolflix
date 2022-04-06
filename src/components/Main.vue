@@ -11,7 +11,7 @@
             :originalTitle="element.original_title"
             :originalName="element.original_name"
             :language="element.original_language"
-            :vote="element.vote_count"
+            :vote="element.vote_average"
             :urlImage="element.poster_path"
             />
         </main>

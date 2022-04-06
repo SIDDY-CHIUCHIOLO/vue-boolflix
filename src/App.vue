@@ -13,6 +13,8 @@
 import axios from 'axios';
 import Header from './components/Header.vue'
 import Main from './components/Main.vue'
+import '@fortawesome/fontawesome-free/css/all.css'
+import '@fortawesome/fontawesome-free/js/all.js'
 
 
 export default {
