@@ -14,8 +14,9 @@
             :overview="element.overview"
             />
         </main>
-        <div v-else class="my-main text-center">
-            <h1 class="pt-5 text-white">NESSUN TITOLO CERCATO</h1>
+        <div v-else class="my-main d-flex justify-content-center align-items-center flex-column">
+            <h1 class="pt-5 text-white">NESSUN TITOLO CERCATO O TROVATO</h1>
+            <p class="text-secondary fs-4">Prova a cercare un nuovo film</p>
         </div>
         
     </div>

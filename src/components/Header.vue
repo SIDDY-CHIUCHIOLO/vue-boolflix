@@ -8,7 +8,7 @@
                             <img class="h-100" src="@/assets/img/netflix.png" alt="logo netflix">
                         </div>
                         <div class="d-flex align-items-center">
-                            <input @keyup.enter="$emit('search', searchFilm), deleteSearch()" v-model.trim="searchFilm" class="me-2 py-1 border border-primary bg-dark text-white" placeholder="Search">
+                            <input @keyup.enter="$emit('search', searchFilm), deleteSearch()" v-model.trim="searchFilm" class="me-2 py-1 border border-2 border-primary bg-dark text-white" placeholder="Search">
                             <button @click="$emit('search', searchFilm), deleteSearch()" class="btn btn-outline-danger">Search</button>
                         </div>
                     </nav>
@@ -38,7 +38,6 @@ export default {
     header{
         height: 15vh;
         .my-container-img{
-            width: 50%;
             height: 15vh;
         }
     }
