@@ -1,8 +1,6 @@
 <template>
     <div>
-        <main v-if="movies" class="d-flex flex-wrap justify-content-center py-4">
-            <div v-for="(element, index) in movies" :key="index+'movies'">
-            </div>
+        <main v-if="movies !== '' " class="d-flex flex-wrap justify-content-center py-4">
             <Film
             v-for="(element, index) in movies"
             :key="index"
@@ -13,6 +11,7 @@
             :language="element.original_language"
             :vote="element.vote_average"
             :urlImage="element.poster_path"
+            :overview="element.overview"
             />
         </main>
         <div v-else class="my-main text-center">

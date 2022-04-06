@@ -1,5 +1,5 @@
 <template>
-        <div class="card text-center m-1" style="width: 18rem;">
+        <!--ì <div class="card text-center m-1" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">{{title}} {{name}}</h5>
                 <p class="card-text">{{originalTitle}} {{originalName}}</p>
@@ -13,7 +13,30 @@
                 </div>
                 <img :src="srcImage()" alt="poster film">
             </div>
-        </div>
+        </div> -->
+        <ul>
+            <li class="h-100">
+                <div class="card h-100 border border-2 border-light position-relative">
+                    <!-- card immagine del film -->
+                    <div class="front-card h-100 d-flex judtify-content-center position-relative">
+                        <img :src="srcImage()" alt="poster film">
+                    </div>
+
+                    <!-- card dettagli del film -->
+                    <div class="back-card bg-dark text-white h-100 p-4  position-absolute">
+                        <h2 class="text-center pb-4">{{title}} {{name}}</h2>
+                        <div class="d-flex justify-content-center  pb-5">
+                            <div v-for="(element, index) in listIcon" :key="index" :class="(element.id <= formattingValue() ? 'text-danger' : '')">
+                            <i :class="element.icon"></i>
+                            </div>
+                        </div>
+                        <p class="card-text"> <span class="fw-bold text-danger">Titolo originale:</span> {{originalTitle}} {{originalName}}</p>
+                        <span class="fw-bold text-danger">language : <lang-flag :iso='language'/></span>
+                        <p> <span class="fw-bold text-danger">Overview: </span>{{overview}}</p>
+                    </div>
+                </div>
+            </li>
+        </ul>
 </template>
 
 <script>
@@ -24,13 +47,13 @@ export default {
     components:{
         LangFlag
     },
-    props:['title', 'originalTitle', 'language', 'vote', 'name', 'originalName', 'urlImage'],
+    props:['title', 'originalTitle', 'language', 'vote', 'name', 'originalName', 'urlImage', 'overview'],
     data: function(){
         return{
             urlBase: 'https://image.tmdb.org/t/p/',
             Image: '',
             roundedValue: '',
-            listSizeImage: ["w45","w92","w154","w185","w300","w500","w780","w1280","h632","original"],
+            listSizeImage: ["w45","w92","w154","w185","w300", "w342","w500","w780","w1280","h632","original"],
             listIcon:[
                 {
                     id: 1,
@@ -59,7 +82,7 @@ export default {
     methods:{
         srcImage(){
             if(this.urlImage !== null){
-                this.Image = this.urlBase + this.listSizeImage[3] + this.urlImage;
+                this.Image = this.urlBase + this.listSizeImage[5] + this.urlImage;
                 return this.Image
             } else {
                 console.warn('immagine non disponibile')
@@ -74,5 +97,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+ul{
+    height: 520px;
+    li{
+        list-style: none;
+        .card{
+            width: 350px;
+            .back-card{
+                overflow-y: auto;
+                display: none;
+                p{
+                    margin: 0;
+                }
+            }
+        }
+        .card:hover .back-card{
+            display: inline;
+        }
+    }
+}
 
 </style>
