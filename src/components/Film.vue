@@ -1,38 +1,24 @@
 <template>
-        <!--ì <div class="card text-center m-1" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">{{title}} {{name}}</h5>
-                <p class="card-text">{{originalTitle}} {{originalName}}</p>
-                <div class="d-flex justify-content-center align-items-center mb-1">
-                    <span>language : <lang-flag :iso='language'/></span>
-                </div>
-                <div class="d-flex justify-content-center">
-                    <div v-for="(element, index) in listIcon" :key="index" :class="(element.id <= formattingValue() ? 'text-danger' : '')">
-                    <i :class="element.icon"></i>
-                </div>
-                </div>
-                <img :src="srcImage()" alt="poster film">
-            </div>
-        </div> -->
         <ul>
             <li class="h-100">
                 <div class="card h-100 border border-2 border-light position-relative">
                     <!-- card immagine del film -->
                     <div class="front-card h-100 d-flex judtify-content-center position-relative">
-                        <img :src="srcImage()" alt="poster film">
+                        <img :src="srcImage()" alt="post film">
                     </div>
 
                     <!-- card dettagli del film -->
-                    <div class="back-card bg-dark text-white h-100 p-4  position-absolute">
+                    <div class="back-card bg-dark text-white h-100 w-100 p-4  position-absolute">
                         <h2 class="text-center pb-4">{{title}} {{name}}</h2>
                         <div class="d-flex justify-content-center  pb-5">
                             <div v-for="(element, index) in listIcon" :key="index" :class="(element.id <= formattingValue() ? 'text-danger' : '')">
-                            <i :class="element.icon"></i>
+                                <i :class="element.icon"></i>
                             </div>
                         </div>
                         <p class="card-text"> <span class="fw-bold text-danger">Titolo originale:</span> {{originalTitle}} {{originalName}}</p>
-                        <span class="fw-bold text-danger">language : <lang-flag :iso='language'/></span>
-                        <p> <span class="fw-bold text-danger">Overview: </span>{{overview}}</p>
+                        <p><span class="fw-bold text-danger">language :</span> {{language}} <lang-flag  :iso='language'/></p>
+                        <p v-if="overview !== ''"><span class="fw-bold text-danger">Overview: </span>{{overview}}</p>
+                        <p v-else><span class="fw-bold text-danger">Overview: </span>non disponible</p>
                     </div>
                 </div>
             </li>
@@ -86,6 +72,8 @@ export default {
                 return this.Image
             } else {
                 console.warn('immagine non disponibile')
+                this.Image = 'https://images.sample.net/wp-content/uploads/2019/10/Classic-Movie-Poster.jpg'
+                return this.Image
             }
         },
         formattingValue(){

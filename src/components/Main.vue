@@ -1,6 +1,6 @@
 <template>
     <div>
-        <main v-if="movies !== '' " class="d-flex flex-wrap justify-content-center py-4">
+        <main v-if="movies.length !== 0 " class="d-flex flex-wrap justify-content-center py-4">
             <Film
             v-for="(element, index) in movies"
             :key="index"
